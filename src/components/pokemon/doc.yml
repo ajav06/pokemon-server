@@ -1,0 +1,68 @@
+definitions:
+  Pokemon:
+    type: object
+    properties:
+      numero:
+        type: integer
+        description: Número del Pokémon
+        example: 830
+      nombre:
+        type: string
+        description: Nombre del Pokémon
+        example: Pikachu
+      tipos:
+        type: array
+        description: Tipo(s) del Pokémon
+        items:
+          type: string
+          example: Electrico
+      estadisticas:
+        type: object
+        properties:
+          hp:
+            type: number
+            description: HP del Pokémon
+            example: 830
+          ataque:
+            type: number
+            description: Ataque del Pokémon
+            example: 830
+          defensa:
+            type: number
+            description: Defensa del Pokémon
+            example: 830
+          velocidad:
+            type: number
+            description: Velocidad del Pokémon
+            example: 830
+      cantidadVictorias:
+        type: integer
+        description: Cantidad de victorias del Pokémon
+        example: 2
+      cantidadDerrotas:
+        type: integer
+        description: Cantidad de derrotas del Pokémon
+        example: 0
+
+/v1/pokemons/:
+  get:
+    tags:
+      - 'Pokemon'
+    summary: 'Get Pokemons'
+    description: 'Get Pokemons'
+    produces:
+      - 'application/json'
+    responses:
+      '200':
+        description: 'Successful operation'
+        schema:
+          type: 'array'
+          items:
+            $ref: '#/definitions/Pokemon'
+      '500':
+        description: 'SERVER ERROR'
+        schema:
+          type: 'object'
+          properties:
+            message:
+              type: 'string'
