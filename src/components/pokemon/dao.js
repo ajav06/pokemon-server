@@ -20,15 +20,7 @@ export const findPokemons = async () => {
 
 export const addPokemon = async (value) => {
   try {
-    const {
-      numero,
-      nombre,
-      tipos,
-      urlSprite,
-      estadisticas,
-      cantidadVictorias,
-      cantidadDerrotas
-    } = value
+    const { numero, nombre, tipos, urlSprite, estadisticas } = value
 
     const pokemon = {
       _id: numero,
@@ -36,9 +28,7 @@ export const addPokemon = async (value) => {
       nombre,
       tipos,
       urlSprite,
-      estadisticas,
-      cantidadVictorias,
-      cantidadDerrotas
+      estadisticas
     }
 
     return await PokemonModel.create(pokemon)

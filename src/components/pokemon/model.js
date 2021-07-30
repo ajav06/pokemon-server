@@ -1,6 +1,9 @@
 import { model, Schema } from 'mongoose'
 
 const PokemonSchema = new Schema({
+  _id: {
+    type: Number
+  },
   numero: {
     type: Number,
     required: true,

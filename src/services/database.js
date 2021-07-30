@@ -1,3 +1,4 @@
+import { initBD } from '@microservices/initBD'
 import mongoose from 'mongoose'
 require('dotenv').config()
 
@@ -10,6 +11,9 @@ const mongoDB = async () => {
       useCreateIndex: true
     })
     console.log('conected to mongoDB')
+
+    // await initBD()
+    // console.log('initBD')
   } catch (error) {
     console.error(error)
   }
