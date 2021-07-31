@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 
 export const initBD = async () => {
   try {
-    for (let id = 1; id < 889; id++) {
+    for (let id = 1; id < 898; id++) {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
         method: 'GET',
         headers: {
