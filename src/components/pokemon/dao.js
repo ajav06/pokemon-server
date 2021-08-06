@@ -18,6 +18,14 @@ export const findPokemons = async () => {
   }
 }
 
+export const findPokemonById = async (id) => {
+  try {
+    return await PokemonModel.findById(id)
+  } catch (error) {
+    throw error
+  }
+}
+
 export const addPokemon = async (value) => {
   try {
     const { numero, nombre, tipos, urlSprite, estadisticas } = value
@@ -32,6 +40,30 @@ export const addPokemon = async (value) => {
     }
 
     return await PokemonModel.create(pokemon)
+  } catch (error) {
+    throw error
+  }
+}
+
+export const addVictoryPokemon = async (id) => {
+  try {
+    return await PokemonModel.findOneAndUpdate(
+      { _id: id },
+      { $inc: { cantidadVictorias: 1 } },
+      { new: true }
+    )
+  } catch (error) {
+    throw error
+  }
+}
+
+export const addLostPokemon = async (id) => {
+  try {
+    return await PokemonModel.findOneAndUpdate(
+      { _id: id },
+      { $inc: { cantidadDerrotas: 1 } },
+      { new: true }
+    )
   } catch (error) {
     throw error
   }

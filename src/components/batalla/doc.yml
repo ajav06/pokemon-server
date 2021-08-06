@@ -1,0 +1,82 @@
+definitions:
+  Batalla:
+    type: object
+    properties:
+      participante:
+        type: string
+        description: Nombre del Pokémon
+        example: Pikachu
+      ganador:
+        $ref: '#/definitions/Pokemon'
+      perdedor:
+        $ref: '#/definitions/Pokemon'
+
+/v1/batallas/:
+  get:
+    tags:
+      - 'Batalla'
+    summary: 'Get Batallas'
+    description: 'Get Batallas'
+    produces:
+      - 'application/json'
+    responses:
+      '200':
+        description: 'Successful operation'
+        schema:
+          type: 'array'
+          items:
+            $ref: '#/definitions/Batalla'
+      '500':
+        description: 'SERVER ERROR'
+        schema:
+          type: 'object'
+          properties:
+            message:
+              type: 'string'
+
+  post:
+    tags:
+      - 'Batalla'
+    summary: 'Create a Batallas'
+    description: 'Create a Batallas'
+    consumes:
+      - application/json
+    produces:
+      - 'application/json'
+    parameters:
+      - in: body
+        name: body
+        description: Formulario para crear una nueva batalla.
+        schema:
+          type: 'object'
+          required:
+            - 'participante'
+            - 'pokemon1'
+            - 'pokemon2'
+          properties:
+            participante:
+              type: string
+              description: 'Nombre del participante'
+              example: 'Julian'
+            pokemon1:
+              type: integer
+              description: 'Número del pokemon 1'
+              example: 3
+            pokemon2:
+              type: integer
+              description: 'Número del pokemon 2'
+              example: 5
+    responses:
+      '200':
+        description: 'Successful operation'
+        schema:
+          type: 'array'
+          items:
+            $ref: '#/definitions/Batalla'
+      '500':
+        description: 'SERVER ERROR'
+        schema:
+          type: 'object'
+          properties:
+            message:
+              type: 'string'

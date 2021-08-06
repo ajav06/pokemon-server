@@ -1,7 +1,7 @@
 import { message } from '@config/message'
 import { handleError, handleResponse } from '@middleware/errorHandlers'
-import { addPokemon, findPokemons } from './dao'
-import { pokemonsResource } from './dto'
+import { addPokemon, findPokemonById, findPokemons } from './dao'
+import { pokemonResource, pokemonsResource } from './dto'
 
 // /v1/pokemons/
 export const listPokemons = async (req, res) => {
@@ -9,6 +9,17 @@ export const listPokemons = async (req, res) => {
     const data = await findPokemons()
 
     handleResponse(res, 200, message.accepted, pokemonsResource(data))
+  } catch (error) {
+    handleError(error, res)
+  }
+}
+
+// /v1/pokemons/{id}
+export const getPokemon = async (req, res) => {
+  try {
+    const data = await findPokemonById(req.params.id)
+
+    handleResponse(res, 200, message.accepted, pokemonResource(data))
   } catch (error) {
     handleError(error, res)
   }

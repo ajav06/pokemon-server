@@ -66,3 +66,30 @@ definitions:
           properties:
             message:
               type: 'string'
+
+/v1/pokemons/{id}:
+  get:
+    tags:
+      - 'Pokemon'
+    summary: 'Get a Pokemon'
+    description: 'Get a Pokemon'
+    produces:
+      - 'application/json'
+    parameters:
+      - in: path
+        name: id
+        type: integer
+        description: 'Number pokemon'
+        example: 1
+    responses:
+      '200':
+        description: 'Successful operation'
+        schema:
+          $ref: '#/definitions/Pokemon'
+      '500':
+        description: 'SERVER ERROR'
+        schema:
+          type: 'object'
+          properties:
+            message:
+              type: 'string'
